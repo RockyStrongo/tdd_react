@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export const useRemoteService = (url, initialData) => {
+export const useRemoteService = (initialUrl, initialData) => {
   const [data, setData] = useState(initialData);
   const [loading, setLoading] = useState([]);
   const [error, setError] = useState([]);
+  const [url, setUrl] = useState(initialUrl);
 
   useEffect(() => {
     const fetchBoooks = async () => {
@@ -22,7 +23,7 @@ export const useRemoteService = (url, initialData) => {
     };
 
     fetchBoooks();
-  }, []);
+  }, [url]);
 
-  return { data, loading, error };
+  return { data, loading, error, setUrl };
 };
